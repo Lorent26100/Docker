@@ -1,0 +1,35 @@
+version: '3.3'
+services:
+        flask:
+                build: ../flask_web
+                container_name: flask
+                restart: always
+                environment:
+                        - APP_NAME=MyFlaskApp
+                expose:
+                        - 8080
+                networks:
+                        - net_flaski
+                volumes:
+                        - partage:/partage
+
+        textSumarizer:
+                image: codait/max-text-summarizer
+                container_name: TextSummarizer
+                restart: always
+                expose:
+                        - 5000
+                networks:
+                        - net_text_summarizer
+                volumes:
+                        - partage:/partage
+networks:
+        net_flaski: {}
+        net_text_summarizer: {}
+
+volumes:
+        partage:
+                
+
+        
+
